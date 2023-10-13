@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo';
+
 import axios from 'axios';
+import './styles/index.css';
+import Header from './components/Header';
+
 // axios를 이용해 백에서 데이터를 가져오기 때문에 axios import
 function App() {
   console.log(process.env.REACT_APP_DB_HOST);
@@ -59,18 +63,31 @@ function App() {
     );
   };
 
+  const imgUrl = 'https://www.ghibli.jp/gallery/chihiro043.jpg';
+
   return (
     <div className="App">
-      <AddTodo addItem={addItem} />
-      {/* todoItems 반복,  props 데이터(투두 객체)를 자식 컴포넌트에게 전달 */}
-      {todoItems.map((item) => (
-        <Todo
-          key={item.id}
-          item={item}
-          deleteItem={deleteItem}
-          updateItem={updateItem}
-        />
-      ))}
+      <div
+        className="bg-scroll w-screen h-screen bgImg"
+        style={{ backgroundImage: `url(${imgUrl})` }}
+      >
+        {/* <Header /> */}
+
+        <div className="col-start-1 backdrop-blur-sm bg-white/30  w-3/4 h-2/5 py-6 mx-auto my-auto">
+          <AddTodo addItem={addItem} />
+          {/* todoItems 반복,  props 데이터(투두 객체)를 자식 컴포넌트에게 전달 */}
+          <div className=" w-2/4 h-2/5 py-6 mx-auto my-auto ">
+            {todoItems.map((item) => (
+              <Todo
+                key={item.id}
+                item={item}
+                deleteItem={deleteItem}
+                updateItem={updateItem}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
