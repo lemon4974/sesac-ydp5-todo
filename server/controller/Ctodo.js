@@ -20,8 +20,8 @@ exports.createTodo = async (req, res) => {
       done: false,
     });
     console.log(newTodo);
-    // res.send(newTodo);
-    res.end();
+    res.send(newTodo);
+    // res.end(); //데이터 없이 응답을 하는 것
   } catch (err) {
     res.send(err);
   }

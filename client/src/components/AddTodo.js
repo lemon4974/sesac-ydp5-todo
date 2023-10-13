@@ -5,7 +5,7 @@ export default function AddTodo({ addItem }) {
 
   const onButtonClick = () => {
     addItem(todoItem);
-    addItem({
+    setTodoItem({
       title: '',
     });
     // input 초기화
